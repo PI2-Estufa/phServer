@@ -13,5 +13,9 @@ class PhServer():
 
     @rpc
     def receive_ph(self, ph):
+        p = Ph()
+        p.value = ph
+        db.session.add(p)
+        db.session.commit()
         self.publish(ph)
         return ph
