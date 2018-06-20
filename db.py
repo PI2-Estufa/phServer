@@ -17,6 +17,6 @@ class Ph(Base):
     id = Column(Integer, 
             Sequence('ph_id_seq'), primary_key=True)
     value = Column(Float)
-    created_at = Column(DateTime, default=datetime.datetime.utcnow) 
+    created_date = Column(DateTime, default=datetime.datetime.utcnow) 
 
 Base.metadata.create_all(engine)
