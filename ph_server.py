@@ -15,6 +15,8 @@ class PhServer():
         try:
             db.session.add(p)
             db.session.commit()
-        except OperationalError:
+        except:
             db.session.rollback()
+        finally:
+            db.session.close()
         return ph
