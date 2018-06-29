@@ -1,6 +1,7 @@
 from nameko.rpc import rpc
 import db
 from db import Ph
+from psycopg2 import OperationalError
 
 
 class PhServer():
@@ -11,6 +12,9 @@ class PhServer():
         ph = round(ph, 1)
         p = Ph()
         p.value = ph
-        db.session.add(p)
-        db.session.commit()
+        try:
+            db.session.add(p)
+            db.session.commit()
+        except OperationalError:
+            db.session.rollback()
         return ph
